@@ -8,7 +8,7 @@
         "@apify/actors-mcp-server"
       ],
       "env": {
-        "APIFY_TOKEN": "apify_api_27WimyUrubPwjuYm0xDjfR5EvcLukP2rkAZ7"
+        "APIFY_TOKEN": "${env:APIFY_TOKEN}"
       }
     }
   }
