@@ -15,15 +15,30 @@ model: sonnet
 
 ## 利用可能MCPツール
 
-### Apify MCP Server
-**主要機能**:
-- `apify.run_actor`: Instagram、Twitter、LinkedInなどのソーシャルメディアデータ取得
-- `apify.get_actor_run`: 実行状況の確認
-- `apify.list_actors`: 利用可能なActorの一覧取得
+### Apify MCP Server（必須使用）
+**接続確認済み**: ✅ Connected
+**APIトークン**: 設定済み（apify_api_27WimyUrubPwjuYm0xDjfR5EvcLukP2rkAZ7）
+
+**実行手順**:
+1. **まず必ずApifyツールを直接試行してください**
+2. **接続エラーの場合のみWeb検索で代替**
+
+**推奨実行コード**:
+```python
+# Instagram検索の実行例
+result = await apify.run_actor(
+    actor_id="apify/instagram-scraper",
+    input={
+        "search": "対象ペルソナのキーワード",
+        "resultsLimit": 5,
+        "includeMetadata": True
+    }
+)
+```
 
 **推奨Actorリスト**:
-- `apify/instagram-scraper`: Instagram投稿・プロフィール分析
-- `apify/twitter-scraper`: Twitter投稿・プロフィール分析  
+- `apify/instagram-scraper`: Instagram投稿・プロフィール分析（**最優先**）
+- `apify/twitter-scraper`: Twitter投稿・プロフィール分析
 - `apify/linkedin-company-scraper`: LinkedIn企業・職歴分析
 - `apify/google-search-scraper`: 関連検索結果の取得
 
@@ -75,9 +90,51 @@ await apify.run_actor({
 ## 実行手順
 1. **入力情報確認**: ターゲット記述の抽象度を評価
 2. **Apify分析**: 複数のActorを使用してソーシャルメディアデータ取得
+   - **エラーハンドリング**: API接続失敗時はフォールバック処理実行
 3. **補完検索**: `web-search`でペルソナ関連統計・業界情報検索
 4. **詳細調査**: `web-fetch`で特定サイトの詳細情報取得
 5. **統合分析**: 全データを統合して具体的ペルソナ作成
+
+## 🚨 重要：MCPツール優先使用指示
+
+### Apifyツールの直接実行（最優先）
+**実行開始時に必ず以下を試行**:
+```
+1. Apifyツールが利用可能か確認
+2. apify/instagram-scraperで検索実行
+3. 成功・失敗を問わず結果をレポートに明記
+```
+
+### 実行ログの必須記録
+分析レポートに以下を必ず記載:
+- ✅ Apifyツール実行成功：取得データ件数
+- ❌ Apifyツール実行失敗：エラー内容と代替手段使用
+- 📊 使用したデータソース：Instagram API / Web検索 / 統計データ
+
+## エラーハンドリング・フォールバック
+### Apify API接続失敗時の対処
+1. **エラー検知**: API接続エラー、認証エラー、キー不正を検知
+2. **エラー報告**: 詳細なエラーメッセージを表示
+3. **代替処理継続**: エラー時も分析を継続（品質は維持）
+   ```
+   ⚠️ Apify API接続エラーが発生しました
+
+   【エラー詳細】
+   - API認証失敗 / キー不正 / 接続タイムアウト等
+
+   【代替処理】
+   Web検索と統計データで高品質分析を継続します
+   1. .envファイルのAPIFY_TOKEN設定確認
+   2. Apifyアカウントのアクティブ状態確認
+   3. キーの有効性確認
+
+   【次のステップ】
+   API設定完了後、再度実行してください。
+
+   ⚠️ 緊急時のみ、Web検索ベースでの簡易ペルソナ作成も可能ですが、
+      品質が70%程度に低下します。Instagram実データ分析を強く推奨します。
+   ```
+4. **実行停止**: エラー解決まで処理を継続しない
 
 ## 出力ファイル
 **必ず以下パスに保存**:
@@ -119,10 +176,12 @@ await apify.run_actor({
 
 ### ソーシャルメディア分析結果
 - **分析プラットフォーム**: Instagram（30投稿）、Twitter（50ツイート）
+  - **データソース**: Apify API使用 / Web検索代替 / 統計推定
 - **共通行動パターン**: キャリア関連投稿に高反応、学習系コンテンツの保存多数
 - **推定興味領域**: スキルアップ、副業、投資、自己啓発
 - **投稿頻度**: Instagram週2-3回、Twitter毎日
 - **エンゲージメント**: キャリア系投稿で平均いいね数180%増
+- **データ品質**: Apify使用時100%（必須）
 
 ## 品質評価
 - **完成度スコア**: 88/100
