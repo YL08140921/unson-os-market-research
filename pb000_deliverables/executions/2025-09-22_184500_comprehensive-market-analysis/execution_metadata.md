@@ -3,33 +3,33 @@
 ## 実行基本情報
 
 ### 識別情報
-- **実行ID**: 2025-09-20_production_mcp-enabled-market-research
-- **プロジェクト名**: mcp-enabled-market-research
-- **実行開始日時**: 2025-09-20 12:00:00
+- **実行ID**: 2025-09-22_184500_comprehensive-market-analysis
+- **プロジェクト名**: comprehensive-market-analysis
+- **実行開始日時**: 2025-09-22 18:45:00
 - **実行者**: data-manager
 - **承認者**: {承認者名（最終承認時に記録）}
 
 ### 実行環境
-- **Claude Code バージョン**: Claude 3.5 Haiku
+- **Claude Code バージョン**: claude-3-5-haiku-20241022
 - **使用エージェント**: persona-analyzer, issue-detector, idea-generator, competitive-analyzer, positioning-integrator
 - **MCP接続状況**:
-  - Apify MCP Server: 接続済み
-  - Instagram API: 利用可能
+  - Apify MCP Server: {接続済み/未接続}
+  - Instagram API: {利用可能/制限あり}
 
 ## 入力データ
 
 ### 企業情報
-- **企業名**: {実行時に設定}
+- **企業名**: {企業名}
 - **Vision**: {企業ビジョン}
 - **Mission**: {企業ミッション}
 - **Values**: {企業価値観（3つ以上）}
 - **主要強み**: {企業の強み（3つ以上）}
 
 ### ターゲット情報
-- **初期ペルソナ記述**: 30代の中小企業経営者（デジタル化推進検討中）
-- **対象市場**: JP
-- **事業モデル**: B2B
-- **主要チャネル**: Web
+- **初期ペルソナ記述**: {入力された抽象的なターゲット記述}
+- **対象市場**: {JP/US/Global}
+- **事業モデル**: {B2C/B2B/Mixed}
+- **主要チャネル**: {Web/SNS/LINE/App}
 
 ## 実行進捗
 
@@ -107,4 +107,4 @@
 - **投資回収期間**: {ヶ月数}ヶ月
 
 ---
-*作成日時: 2025-09-20 12:00:00 | 最終更新: 2025-09-20 12:00:00 | 管理者: data-manager*
+*作成日時: 2025-09-22 18:45:00 | 最終更新: 2025-09-22 18:45:00 | 管理者: data-manager*
