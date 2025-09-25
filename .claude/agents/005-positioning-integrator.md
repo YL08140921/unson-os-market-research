@@ -1,7 +1,7 @@
 ---
 name: positioning-integrator
 description: 全フェーズの成果を統合してSTPポジショニング完成とLP用メッセージング開発。最終統合、ポジショニング、メッセージング開発で必須使用。MUST BE USED for final integration.
-tools: Read, Write, web-search
+tools: Read, Write, mcp__langgraph-deep-search__quick_search
 model: opus
 ---
 
